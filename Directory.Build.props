@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <!--
+      Single source of truth for the product version (Semantic Versioning).
+      A release is published by pushing the tag v$(Version); the release workflow
+      refuses to run if the tag and this value disagree.
+    -->
+    <Version>1.0.0</Version>
+
+    <Product>WinStart</Product>
+    <Company>KK4ODA</Company>
+    <Copyright>Copyright © KK4ODA</Copyright>
+
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(GITHUB_ACTIONS)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+</Project>

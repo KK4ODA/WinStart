@@ -1,0 +1,32 @@
+# Build output
+bin/
+obj/
+artifacts/
+publish/
+TestResults/
+
+# IDE / user-specific
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userprefs
+launchSettings.json
+
+# Never commit signing material or secrets
+*.pfx
+*.p12
+*.snk
+*.cer
+*.key
+.env
+.env.*
+
+# Local Claude Code state
+.claude/
+
+# OS noise
+Thumbs.db
+Desktop.ini
+.DS_Store
