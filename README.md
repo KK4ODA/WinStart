@@ -270,4 +270,4 @@ needed: it verifies downloads by SHA-256 either way.
 
 ## License
 
-No license has been selected yet; see [LICENSE](LICENSE).
+WinStart is released under the [MIT License](LICENSE).
