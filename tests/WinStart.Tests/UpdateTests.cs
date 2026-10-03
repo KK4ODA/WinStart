@@ -129,5 +129,24 @@ namespace WinStart.Tests
             string text = ReleaseNotes.ToPlainText(markdown);
             Assert.Equal("Added\r\n• Sequential launching\r\n• A --quit switch\r\n\r\nSee the guide.", text);
         }
+
+        [Fact]
+        public void Lines_wrapped_in_the_source_are_joined_again()
+        {
+            const string markdown = "First release.\r\n\r\n### Added\r\n\r\n- Finds installed programs (Start menu, Store\r\n  apps and registered programs) with search.\r\n- Second item.\r\n\r\nA paragraph that was\nwrapped by hand.\r\n1. One\r\n2. Two";
+            string text = ReleaseNotes.ToPlainText(markdown);
+            Assert.Equal(
+                "First release.\r\n\r\nAdded\r\n\r\n"
+                + "• Finds installed programs (Start menu, Store apps and registered programs) with search.\r\n"
+                + "• Second item.\r\n\r\n"
+                + "A paragraph that was wrapped by hand.\r\n1. One\r\n2. Two",
+                text);
+        }
+
+        [Fact]
+        public void Text_directly_under_a_heading_stays_on_its_own_line()
+        {
+            Assert.Equal("Fixed\r\nA crash at startup.", ReleaseNotes.ToPlainText("## Fixed\nA crash at startup."));
+        }
     }
 }

@@ -29,7 +29,22 @@ foreach ($line in $lines) {
     if ($inside) { $section.Add($line) }
 }
 
-$text = ($section -join "`n").Trim()
+# Join lines that were wrapped by hand in CHANGELOG.md, so every paragraph and list item is a
+# single line. GitHub renders both forms identically, and the update dialog (plain text) can
+# then wrap the notes to its own width.
+$joined = New-Object System.Collections.Generic.List[string]
+$inCode = $false
+foreach ($line in $section) {
+    $trimmed = $line.Trim()
+    if ($trimmed.StartsWith('```')) { $inCode = -not $inCode; $joined.Add($line.TrimEnd()); continue }
+    $previous = if ($joined.Count -gt 0) { $joined[$joined.Count - 1] } else { '' }
+    $startsBlock = $trimmed -eq '' -or $trimmed -match '^(#|[-*+] |\d+\. |>|\|)'
+    $canJoin = -not $inCode -and -not $startsBlock -and $previous.Trim() -ne '' -and -not $previous.TrimStart().StartsWith('#') -and -not $previous.TrimStart().StartsWith('```')
+    if ($canJoin) { $joined[$joined.Count - 1] = $previous.TrimEnd() + ' ' + $trimmed }
+    else { $joined.Add($line.TrimEnd()) }
+}
+
+$text = ($joined -join "`n").Trim()
 if (-not $inside -or -not $text) {
     throw "CHANGELOG.md has no notes for version $Version. Add a '$heading - <date>' section before releasing."
 }

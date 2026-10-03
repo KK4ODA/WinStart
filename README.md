@@ -90,6 +90,8 @@ When a newer version exists it shows your version, the new version and the relea
 three choices: **Download and Install**, **Skip This Version**, or **Remind Me Later**. Nothing
 is ever installed without your click.
 
+![Update dialog](docs/screenshots/update.png)
+
 **Download and Install** downloads the installer from the release, verifies it against the
 release's SHA-256 checksum, closes WinStart, installs the new version and starts it again. Your
 applications and settings are untouched: they live in `%AppData%\WinStart`, not in the program
@@ -152,6 +154,9 @@ does not register itself to start with Windows unless you enable that in Setting
   **Edit**, and choose the program again.
 - **An application starts twice.** Remove it from other startup places (its own "start with
   Windows" option, or Task Manager > Startup apps) and let WinStart launch it.
+- **"Already running", but it is not.** WinStart recognises a running application by its program
+  file. Entries that share one (several scripts run by `cmd.exe` or `pythonw.exe`, for example)
+  look alike; switch off *Don't launch applications that are already running* in **Settings**.
 - **Something else.** **History > Open Log File** shows details. Please include the relevant
   lines when [reporting an issue](https://github.com/KK4ODA/WinStart/issues).
 

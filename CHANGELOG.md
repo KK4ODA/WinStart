@@ -9,6 +9,10 @@ The section for a version becomes the description of its GitHub release and the
 
 ## [Unreleased]
 
+### Fixed
+
+- The "What's new" text in the update dialog no longer breaks lines in the middle of a sentence.
+
 ## [1.0.0] - 2026-10-03
 
 First release.
