@@ -268,6 +268,18 @@ Signing, or SignPath). Keep certificates and passwords in GitHub Actions secrets
 already blocks common certificate file types from being committed. No change to the updater is
 needed: it verifies downloads by SHA-256 either way.
 
+<!-- tota-support:start -->
+## Support
+
+WinStart is free and stays free. It is written by KK4ODA, who also runs
+[Tiles on the Air](https://tilesontheair.com), a free program for portable
+operators, and both are kept going by the people who use them. If WinStart is
+useful to you, a contribution through the
+[Tiles on the Air giving page](https://tilesontheair.com/Giving) helps keep this tool and Tiles
+running. Nothing is ever locked behind it, and a bug report or an on-air
+report helps just as much.
+<!-- tota-support:end -->
+
 ## License
 
 WinStart is released under the [MIT License](LICENSE).
